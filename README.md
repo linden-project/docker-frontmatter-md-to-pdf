@@ -1,18 +1,17 @@
-#docker-pandocomatic-fred
+# Docker Pandocomatic Plus
 
-WIP
+This Dockerfile create beautiful PDF's from markdown files using Pandoc and Latex.
 
-for now it can be used like this:
+## Includes
 
-## Use fred to preprocess Front Matter
+- TexLive
+- Some extra Tex-fonts
+- Pandoc
+- Pandocomatic
+- Fred
 
-```
-docker run -it -v /home/pim/cTechNative/rsb/report:/mnt pandocomatic-fred fred process_frontmatter_specials -d /mnt/README.md | sed 's/\\\[\\\[.*\\\]\\\]//g' > /tmp/pandotemp.md
-```
+## Example
 
-## use pandocomatic to generate PDF
+the example dir contains a RUNME.sh with two useful docker commands for creating PDF's.
 
-```
-docker run -it -v /tmp:/mnt -v $(pwd)/pandoc-conf:/home/pandocomatic-user/.pandoc pandocomatic-fred bundle exec pandocomatic -b -i /mnt/pandotemp.md
-```
-
+## ...
