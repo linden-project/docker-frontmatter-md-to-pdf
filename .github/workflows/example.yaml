@@ -20,8 +20,20 @@ jobs:
           echo "-----\n"
           fred version
 
+          echo "-----\n"
           pwd
 
-          #echo ${{ github.workspace }}
-          #ls -al ${{ github.workspace }}
-          #bundle exec pandocomatic --help
+          echo "-----\n"
+          mkdir build
+
+          echo "-----\n"
+          fred process_frontmatter_specials -d example/README.md  | sed 's/\\\[\\\[.*\\\]\\\]//g' > build/temp.md
+
+          echo "-----\n"
+          pandocomatic -b -i example/README.md -o build/README.pdf
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build # The folder the action should deploy.
+          branch: pdf
