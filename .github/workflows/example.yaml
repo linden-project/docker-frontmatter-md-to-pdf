@@ -6,10 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     container: mipmip/frontmatter-md-to-pdf:latest
 
+    # EDIT ENV VARS BELOW TO SUIT YOUR CONF
     env:
       PANDOC_CONF_PATH: example/dotpandoc
       INPUT_FILE_PATH: example/README.md
       OUTPUT_FILE_NAME: README.pdf
+      BRANCH: pdf
 
     steps:
 
@@ -19,7 +21,6 @@ jobs:
       - name: Create PDF
         #continue-on-error: true
         run: |
-
           mkdir build
           fred process_frontmatter_specials -d ${INPUT_FILE_PATH} | sed 's/\\\[\\\[.*\\\]\\\]//g' > build/temp.md
           rsync -av ${PANDOC_CONF_PATH}/ ~/.pandoc/
