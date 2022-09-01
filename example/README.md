@@ -26,7 +26,7 @@ pandocomatic_:
     tex_subject: $FORMAT {subtitle}
     tex_keywords:
   pandoc:
-    output: $FORMAT /mnt/{document_nummer}_{title}_{klant}_{document_versie}.pdf
+    output: $FORMAT build/{document_nummer}_{title}_{klant}_{document_versie}.pdf
     pdf-engine: lualatex
     template: demo-simpel
     filter:

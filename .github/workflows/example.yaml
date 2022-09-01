@@ -28,12 +28,13 @@ jobs:
 
           echo "-----\n"
           mkdir build
+          ls build
 
           echo "-----\n"
           fred process_frontmatter_specials -d example/README.md  | sed 's/\\\[\\\[.*\\\]\\\]//g' > build/temp.md
 
           echo "-----\n"
-          cp -av example/dotpandoc/ ~/.pandoc
+          rsync -av example/dotpandoc/ ~/.pandoc/
           pandocomatic -b -i build/temp.md -o build/README.pdf
 
       - name: Deploy 🚀
