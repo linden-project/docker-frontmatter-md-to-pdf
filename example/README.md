@@ -36,6 +36,8 @@ pandocomatic_:
 
 # Intro
 
+This is an example document.
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut imperdiet
 sem, vel euismod dolor. In facilisis risus suscipit aliquet faucibus. Aliquam
 ornare a lorem in faucibus. Donec dolor diam, dictum in imperdiet sit amet,
