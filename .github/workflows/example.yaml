@@ -23,6 +23,8 @@ jobs:
           echo "-----\n"
           pwd
 
+          cp -av example/dotpandoc/ ~/.pandoc
+
           echo "-----\n"
           mkdir build
 
@@ -30,7 +32,8 @@ jobs:
           fred process_frontmatter_specials -d example/README.md  | sed 's/\\\[\\\[.*\\\]\\\]//g' > build/temp.md
 
           echo "-----\n"
-          pandocomatic -b -i example/README.md -o build/README.pdf
+          #cp -av example/dotpandoc/ ~/.pandoc
+          #pandocomatic -b -i example/README.md -o build/README.pdf
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
