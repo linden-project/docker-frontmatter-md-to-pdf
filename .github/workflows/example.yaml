@@ -1,44 +1,32 @@
-name: GitHub Actions Demo
+name: Generate PDF
 on: [push]
 jobs:
 
   GeneratePDF:
     runs-on: ubuntu-latest
     container: mipmip/frontmatter-md-to-pdf:latest
+
+    env:
+      PANDOC_CONF_PATH: example/dotpandoc
+      INPUT_FILE_PATH: example/README.md
+      OUTPUT_FILE_NAME: README.pdf
+
     steps:
+
       - name: Check out repository code
         uses: actions/checkout@v3
 
       - name: Create PDF
-        continue-on-error: true
+        #continue-on-error: true
         run: |
-          echo "-----\n"
-          ls -al
 
-          echo "-----\n"
-          pandoc -v
-
-          echo "-----\n"
-          fred version
-
-          echo "-----\n"
-          pwd
-
-          cp -av example/dotpandoc/ ~/.pandoc
-
-          echo "-----\n"
           mkdir build
-          ls build
-
-          echo "-----\n"
-          fred process_frontmatter_specials -d example/README.md  | sed 's/\\\[\\\[.*\\\]\\\]//g' > build/temp.md
-
-          echo "-----\n"
-          rsync -av example/dotpandoc/ ~/.pandoc/
-          pandocomatic -b -i build/temp.md -o build/README.pdf
+          fred process_frontmatter_specials -d ${INPUT_FILE_PATH} | sed 's/\\\[\\\[.*\\\]\\\]//g' > build/temp.md
+          rsync -av ${PANDOC_CONF_PATH}/ ~/.pandoc/
+          pandocomatic -b -i build/temp.md -o build/${OUTPUT_FILE_NAME}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: build # The folder the action should deploy.
-          branch: pdf
+          folder: build
+          branch: ${BRANCH}
