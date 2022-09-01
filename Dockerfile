@@ -12,10 +12,13 @@ RUN curl -fsSL https://crystal-lang.org/install.sh | bash
 RUN cd /tmp && git clone https://github.com/linden-project/fred.git
 RUN cd /tmp/fred && shards
 RUN cd /tmp/fred && make && make install
-USER pandocomatic-user
-SHELL ["/bin/bash", "-l", "-c"]
-COPY . /home/pandocomatic-user/
-WORKDIR /home/pandocomatic-user
-RUN gem install bundler ; bundler install
+
+RUN gem install pandocomatic
+
+#USER pandocomatic-user
+#SHELL ["/bin/bash", "-l", "-c"]
+#COPY . /home/pandocomatic-user/
+#WORKDIR /home/pandocomatic-user
+#RUN gem install bundler ; bundler install
 
 
