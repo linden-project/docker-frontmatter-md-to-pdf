@@ -9,7 +9,8 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
 
-      - name: Run in container
+      - name: Create PDF
+        continue-on-error: true
         run: |
           echo "-----\n"
           ls -al
@@ -32,8 +33,8 @@ jobs:
           fred process_frontmatter_specials -d example/README.md  | sed 's/\\\[\\\[.*\\\]\\\]//g' > build/temp.md
 
           echo "-----\n"
-          #cp -av example/dotpandoc/ ~/.pandoc
-          #pandocomatic -b -i example/README.md -o build/README.pdf
+          cp -av example/dotpandoc/ ~/.pandoc
+          pandocomatic -b -i build/temp.md -o build/README.pdf
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
