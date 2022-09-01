@@ -1,0 +1,27 @@
+name: GitHub Actions Demo
+on: [push]
+jobs:
+
+  GeneratePDF:
+    runs-on: ubuntu-latest
+    container: mipmip/frontmatter-md-to-pdf:latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Run in container
+        run: |
+          echo "-----\n"
+          ls -al
+
+          echo "-----\n"
+          pandoc -v
+
+          echo "-----\n"
+          fred version
+
+          pwd
+
+          #echo ${{ github.workspace }}
+          #ls -al ${{ github.workspace }}
+          #bundle exec pandocomatic --help
