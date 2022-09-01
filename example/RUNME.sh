@@ -6,10 +6,9 @@ make_command "makepdf" "run commands to create PDF from README.md"
 makepdf(){
   mkdir -p out
   chmod 777 out
-  sudo docker run -it -v $(pwd):/mnt pandocomatic-plus fred process_frontmatter_specials -d /mnt/README.md | sed 's/\\\[\\\[.*\\\]\\\]//g' > out/pandotemp.md
-  sudo docker run -it -v $(pwd)/out:/mnt -v $(pwd)/pandoc-conf:/home/pandocomatic-user/.pandoc pandocomatic-plus bundle exec pandocomatic -b -i /mnt/pandotemp.md
+  docker run -it -v $(pwd):/mnt mipmip/frontmatter-md-to-pdf fred process_frontmatter_specials -d /mnt/README.md | sed 's/\\\[\\\[.*\\\]\\\]//g' > out/pandotemp.md
+  docker run -it -v $(pwd)/out:/mnt -v $(pwd)/dotpandoc:.pandoc mipmip/frontmatter-md-to-pdf pandocomatic -b -i /mnt/pandotemp.md
   ls -al out
 }
-
 
 runme
