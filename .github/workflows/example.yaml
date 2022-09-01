@@ -11,7 +11,7 @@ jobs:
       PANDOC_CONF_PATH: example/dotpandoc
       INPUT_FILE_PATH: example/README.md
       OUTPUT_FILE_NAME: README.pdf
-      BRANCH: pdf
+      DEPLOY_BRANCH: pdf
 
     steps:
 
@@ -30,4 +30,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
-          branch: ${BRANCH}
+          branch: "${DEPLOY_BRANCH}"
