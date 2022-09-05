@@ -1,6 +1,8 @@
 # Docker Pandocomatic Plus
 
-This Dockerfile create beautiful PDF's from markdown files using Pandoc and Latex.
+This Docker images has all tools to create beautiful PDF's from markdown files using Pandoc and Latex. Designed to be used with CI pipelines.
+
+Latest version is on https://github.com/linden-project/docker-frontmatter-md-to-pdf
 
 ## Includes
 
