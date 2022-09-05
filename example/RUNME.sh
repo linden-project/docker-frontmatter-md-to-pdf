@@ -7,7 +7,7 @@ makepdf(){
   mkdir -p out
   chmod 777 out
   docker run -it -v $(pwd):/mnt mipmip/frontmatter-md-to-pdf fred process_frontmatter_specials -d /mnt/README.md | sed 's/\\\[\\\[.*\\\]\\\]//g' > out/pandotemp.md
-  docker run -it -v $(pwd)/out:/mnt -v $(pwd)/dotpandoc:.pandoc mipmip/frontmatter-md-to-pdf pandocomatic -b -i /mnt/pandotemp.md
+  docker run -it -v $(pwd)/out:/mnt -v $(pwd)/dotpandoc:/root/.pandoc mipmip/frontmatter-md-to-pdf pandocomatic -b -i /mnt/pandotemp.md
   ls -al out
 }
 
